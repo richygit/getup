@@ -1,0 +1,9 @@
+<h1>Results</h1>
+
+
+<table>
+  <tr><th>Name</th><th>Postcode</th><th>Email</th></tr>
+<% for result in @results %>
+      <tr><td><%= result.name %></td><td><%= result.postcode %></td><td><%= result.email %></td></tr>
+<% end %>
+</table>

@@ -1,0 +1,21 @@
+<h1>Search</h1>
+
+<% form_tag do %>
+
+    <% field_set_tag 'email' do %>
+        Include: <%= radio_button_tag :email_option, :include, true %>
+        Exclude: <%= radio_button_tag :email_option, :exclude %><br/>
+
+        <%= select_tag "email", options_from_collection_for_select(@email_domains, "email_domain", "email_domain"), {:multiple => true, :size => 5} %>
+    <% end %>
+
+    <% field_set_tag 'postcode' do %>
+        Include: <%= radio_button_tag :postcode_option, :include, true %>
+        Exclude: <%= radio_button_tag :postcode_option, :exclude %><br/>
+
+        Postcodes:
+        <%= select_tag "postcode", options_from_collection_for_select(@postcodes, "postcode", "postcode"), {:multiple => true, :size => 5} %>
+    <% end %>
+
+    <%= submit_tag 'Search' %>
+<% end %>
