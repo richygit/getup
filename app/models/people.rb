@@ -5,7 +5,7 @@ class People < ActiveRecord::Base
 
     def email_domains
       #TODO memcache?
-      People.select(:email_domain).group(:email_domain)
+      People.select(:email_domain).group(:email_domain).order(:email_domain)
       #People.find_by_sql "SELECT email_domain FROM people GROUP by email_domain"
     end
 
@@ -24,7 +24,7 @@ class People < ActiveRecord::Base
         query = query.where("postcodes.number NOT in (?)", postcode )
       end
 
-      return query.all
+      return query.order(:name).all
     end
   end
 end
