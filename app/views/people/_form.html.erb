@@ -14,7 +14,7 @@
         Exclude: <%= radio_button_tag :postcode_option, :exclude %><br/>
 
         Postcodes:
-        <%= select_tag "postcode", options_from_collection_for_select(@postcodes, "postcode", "postcode"), {:multiple => true, :size => 5} %>
+        <%= select_tag "postcode", options_from_collection_for_select(@postcodes, "number", "number"), {:multiple => true, :size => 5} %>
     <% end %>
 
     <%= submit_tag 'Search' %>

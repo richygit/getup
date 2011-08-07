@@ -1,0 +1,11 @@
+id,name,postcode_id,email,email_domain
+1,Cody Kinnaman,1,ck@hotmail.com,hotmail
+2,Christian Hoying,2,ch@gmail.com,gmail
+3,Max Moshier,3,mm@gmail.com,gmail
+4,Noreen Zacharias,4,nz@yahoo.com.au,yahoo
+5,Darren Radovich,5,dr@yahoo.com.au,yahoo
+6,Erik Pendergast,1,ep@gmail.co.nz,gmail
+7,Ted Kuehne,2,tk@hotmail.co.nz,hotmail
+8,Clinton Banegas,3,cb@yahoo.com,yahoo
+9,Neil Ancona,4,na@gmail.com.au,gmail
+10,Clare Straube,5,cs@yahoo.co.nz,yahoo

@@ -1,31 +1,30 @@
 class People < ActiveRecord::Base
+  belongs_to :postcode
 
   class << self
-    def postcodes
-      #TODO memcache?
-      People.find_by_sql "SELECT postcode FROM people GROUP BY postcode"
-    end
 
     def email_domains
       #TODO memcache?
-      People.find_by_sql "SELECT email_domain FROM people GROUP by email_domain"
+      People.group(:email_domain)
+      #People.find_by_sql "SELECT email_domain FROM people GROUP by email_domain"
     end
 
     #perform search for people based on email or postcode
     def do_search(email_option, email, postcode_option, postcode)
+      query = People.joins(:postcode)
       if(email_option == 'include' && email )
-        email_conditions = " email_domain IN ('" << email.join("','") << "') "
+        query = query.where(:email_domain => email)
       elsif(email_option == 'exclude' && email )
-        email_conditions = " email_domain NOT IN ('" << email.join("','") << "') "
+        query = query.where("email_domain NOT IN (?)", email)
       end
 
       if(postcode_option == 'include' && postcode)
-        postcode_conditions = " postcode IN ('" << postcode.join("','") << "') "
+        query = query.where(:postcodes => {:number => postcode})
       elsif(postcode_option == 'exclude' && postcode)
-        postcode_conditions = " postcode NOT IN ('" << postcode.join("','") << "') "
+        query = query.where("postcodes.number NOT in (?)", postcode )
       end
 
-      return People.where(email_conditions).where(postcode_conditions).all
+      return query.all
     end
   end
 end

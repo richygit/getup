@@ -3,7 +3,7 @@
 
 <table>
   <tr><th>Name</th><th>Postcode</th><th>Email</th></tr>
-<% for result in @results %>
-      <tr><td><%= result.name %></td><td><%= result.postcode %></td><td><%= result.email %></td></tr>
+<% for person in @people %>
+      <tr><td><%= person.name %></td><td><%= person.postcode.number %></td><td><%= person.email %></td></tr>
 <% end %>
 </table>

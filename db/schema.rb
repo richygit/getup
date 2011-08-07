@@ -10,21 +10,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110730121135) do
+ActiveRecord::Schema.define(:version => 20110807032851) do
 
   create_table "people", :force => true do |t|
-    t.integer  "postcode"
     t.string   "email"
     t.string   "email_domain"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "postcode_id"
   end
 
-  create_table "posts", :force => true do |t|
-    t.string   "name"
-    t.string   "title"
-    t.text     "content"
+  create_table "postcodes", :force => true do |t|
+    t.integer  "number"
+    t.string   "suburb"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
