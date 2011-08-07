@@ -5,7 +5,7 @@ class People < ActiveRecord::Base
 
     def email_domains
       #TODO memcache?
-      People.group(:email_domain)
+      People.select(:email_domain).group(:email_domain)
       #People.find_by_sql "SELECT email_domain FROM people GROUP by email_domain"
     end
 
