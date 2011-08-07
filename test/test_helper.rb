@@ -21,4 +21,20 @@ class ActiveSupport::TestCase
       assert_select "#search-button"
     end
   end
+
+  # load the people fixture from test/factory_fixtures/people.csv.
+  # use the factory to generate the value for email_domain
+  def load_people
+    people = Hash.new
+    i = 0
+    CSV.foreach("test/factory_fixtures/people.csv") do |person|
+      # skip the header row
+      if i > 0
+        people[person[0]] = FactoryGirl.create(:person, {:email => person[3], :name => person[1], :postcode_id => person[2] } )
+      end
+      i += 1
+    end
+
+    return people
+  end
 end
