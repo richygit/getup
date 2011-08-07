@@ -5,7 +5,7 @@ class PeopleTest < ActiveSupport::TestCase
   set_fixture_class :people => "People"
 
   # test finding hotmail users
-  test "find_hotmail_people" do
+  test "find hotmail people" do
 
     results = People.do_search("include", "hotmail", nil, nil)
     assert_equal(2, results.length)
@@ -19,7 +19,7 @@ class PeopleTest < ActiveSupport::TestCase
   end
 
   # test finding people from postcode = 2000
-  test "find_people_not_from_2000" do
+  test "find people not from 2000" do
     results = People.do_search(nil, nil, "exclude", [2000])
     assert_equal(8, results.length)
 
@@ -34,7 +34,7 @@ class PeopleTest < ActiveSupport::TestCase
   end
 
   # test finding people from postcodes 2000 or 2010
-  test "find_people_from_2000_or_2010" do
+  test "find people from 2000 or 2010" do
     results = People.do_search(nil, nil, "include", [2000, 2010])
     assert_equal(4, results.length)
 
@@ -45,7 +45,7 @@ class PeopleTest < ActiveSupport::TestCase
   end
 
   # test finding people from postcode 2010 who use gmail
-  test "find_people_from_2010_and_gmail" do
+  test "find people from 2010 and gmail" do
     results = People.do_search("include", "gmail", "include", [2010])
     assert_equal(1, results.length)
 
@@ -53,7 +53,7 @@ class PeopleTest < ActiveSupport::TestCase
   end
 
   # test finding people from postcodes 2060, 2061, 2065 and do not use gmail
-  test "find_people_from_2060_2061_2065_and_not_gmail" do
+  test "find people from 2060 2061 2065 and not gmail" do
     results = People.do_search("exclude", "gmail", "include", [2060, 2061, 2065])
     assert_equal(4, results.length)
 

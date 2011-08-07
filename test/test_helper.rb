@@ -9,5 +9,16 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  # assert that the search form exists
+  def assert_search_form
+    assert_select "#search-form" do
+      assert_select "#email_option_include"
+      assert_select "#email_option_exclude"
+      assert_select "#email"
+      assert_select "#postcode_option_include"
+      assert_select "#postcode_option_exclude"
+      assert_select "#postcode"
+      assert_select "#search-button"
+    end
+  end
 end

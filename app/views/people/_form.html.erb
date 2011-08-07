@@ -1,21 +1,21 @@
 <h1>Search</h1>
 
-<% form_tag do %>
+<%= form_tag( people_index_path , {:method => "get", :id => "search-form"})  do -%>
 
-    <% field_set_tag 'email' do %>
+    <%= field_set_tag 'email' do -%>
         Include: <%= radio_button_tag :email_option, :include, true %>
         Exclude: <%= radio_button_tag :email_option, :exclude %><br/>
 
         <%= select_tag "email", options_from_collection_for_select(@email_domains, "email_domain", "email_domain"), {:multiple => true, :size => 5} %>
-    <% end %>
+    <% end -%>
 
-    <% field_set_tag 'postcode' do %>
+    <%= field_set_tag 'postcode' do -%>
         Include: <%= radio_button_tag :postcode_option, :include, true %>
         Exclude: <%= radio_button_tag :postcode_option, :exclude %><br/>
 
         Postcodes:
         <%= select_tag "postcode", options_from_collection_for_select(@postcodes, "number", "number"), {:multiple => true, :size => 5} %>
-    <% end %>
+    <% end -%>
 
-    <%= submit_tag 'Search' %>
-<% end %>
+    <%= submit_tag "Search", :id => "search-button" %>
+<% end -%>
