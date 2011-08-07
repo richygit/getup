@@ -1,11 +1,11 @@
-class People < ActiveRecord::Base
+class Person < ActiveRecord::Base
   belongs_to :postcode
 
   class << self
 
     def email_domains
       #TODO memcache?
-      People.select(:email_domain).group(:email_domain).order(:email_domain)
+      Person.select(:email_domain).group(:email_domain).order(:email_domain)
     end
 
     # sanitise the email array for use in db query
@@ -27,7 +27,7 @@ class People < ActiveRecord::Base
       end
 
       postcode.length.times do |i|
-        postcode[i] = postcode[i].gsub(/[^\d]/, '') #remove all non-numeric chars
+        postcode[i] = postcode[i].to_s.gsub(/[^\d]/, '') #remove all non-numeric chars
       end
       return postcode
     end
@@ -37,7 +37,7 @@ class People < ActiveRecord::Base
       email = sanitise_email(email)
       postcode = sanitise_postcode(postcode)
 
-      query = People.joins(:postcode)
+      query = Person.joins(:postcode)
       if(email_option == 'include' && email )
         query = query.where(:email_domain => email)
       elsif(email_option == 'exclude' && email )
