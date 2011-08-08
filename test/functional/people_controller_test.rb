@@ -12,8 +12,6 @@ class PeopleControllerTest < ActionController::TestCase
   end
 
   test "should perform gmail search" do
-    load_postcodes
-    load_people
     get :index, {:email_option => "include", :email => ["gmail"]}
 
     assert_response :success
@@ -25,8 +23,6 @@ class PeopleControllerTest < ActionController::TestCase
   end
 
   test "should perform exclude postcode 2000 and 2060 search and yahoo search" do
-    load_postcodes
-    load_people
     get :index, {:postcode_option => "exclude", :postcode => [2000, 2060], :email_option => "include", :email => ["yahoo"]}
 
     assert_response :success
