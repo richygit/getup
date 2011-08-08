@@ -27,7 +27,7 @@ class PeopleControllerTest < ActionController::TestCase
   test "should perform exclude postcode 2000 and 2060 search and yahoo search" do
     load_postcodes
     load_people
-    get :index, {:postcode_option => "exclude", :postcode => [2000, 2060], :email_option => "include", :email => "yahoo"}
+    get :index, {:postcode_option => "exclude", :postcode => [2000, 2060], :email_option => "include", :email => ["yahoo"]}
 
     assert_response :success
     assert_not_nil :postcodes

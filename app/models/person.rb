@@ -10,30 +10,22 @@ class Person < ActiveRecord::Base
 
     # sanitise the email array for use in db query
     def sanitise_email(email)
-      if email.nil?
-        return nil
-      end
-
-      email.length.times do |i|
-        email[i] = email[i].gsub(/[^\w]/,'') #remove all non-word chars
-      end
+      return nil if email.blank?
+      #remove all non-word chars
+      email.collect{ |e| e.gsub(/[^\w]-/,'')}
       return email
     end
 
     #sanitise the postcode array for use in db query
     def sanitise_postcode(postcode)
-      if postcode.nil?
-        return nil
-      end
-
-      postcode.length.times do |i|
-        postcode[i] = postcode[i].to_s.gsub(/[^\d]/, '') #remove all non-numeric chars
-      end
+      return nil if postcode.blank?
+      #remove all non-numeric chars
+      postcode.collect{ |p| p.to_s.gsub(/[^\d]/, '')}
       return postcode
     end
 
     # perform search for people based on email or postcode
-    def do_search(email_option, email, postcode_option, postcode)
+    def search(email_option, email, postcode_option, postcode)
       email = sanitise_email(email)
       postcode = sanitise_postcode(postcode)
 
