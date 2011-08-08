@@ -1,5 +1,8 @@
-require '../../test/test_helper'
+require_relative '../../test/test_helper'
 
-task :initialise_data do
-  puts 'hello world'
+namespace :data do
+  task :initialise_data do
+    puts 'hello world'
+  end
 end
+
